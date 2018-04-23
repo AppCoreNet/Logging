@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCore.Logging.Abstractions", "src\AppCore.Logging.Abstractions\AppCore.Logging.Abstractions.csproj", "{542D5E5C-9A21-4D1A-8045-7639D4B10049}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCore.Logging.Serilog", "src\AppCore.Logging.Serilog\AppCore.Logging.Serilog.csproj", "{D7C3D92E-A25E-477B-BE32-596D5E39A9D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCore.Logging.Microsoft.Extensions", "src\AppCore.Logging.Microsoft.Extensions\AppCore.Logging.Microsoft.Extensions.csproj", "{19A2F683-3FF0-4D09-8442-AFFB801E6F98}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCore.Logging", "src\AppCore.Logging\AppCore.Logging.csproj", "{279E52AA-0816-4AFE-A049-4871C8D60E8B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCore.Logging.Serilog.Tests", "test\AppCore.Logging.Serilog.Tests\AppCore.Logging.Serilog.Tests.csproj", "{49ACAB61-3540-4811-A591-1137695C17A3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCore.Logging.Tests", "test\AppCore.Logging.Tests\AppCore.Logging.Tests.csproj", "{E1371A9F-1361-463C-83C1-631B4B258377}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{542D5E5C-9A21-4D1A-8045-7639D4B10049}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{542D5E5C-9A21-4D1A-8045-7639D4B10049}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{542D5E5C-9A21-4D1A-8045-7639D4B10049}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{542D5E5C-9A21-4D1A-8045-7639D4B10049}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7C3D92E-A25E-477B-BE32-596D5E39A9D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7C3D92E-A25E-477B-BE32-596D5E39A9D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7C3D92E-A25E-477B-BE32-596D5E39A9D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7C3D92E-A25E-477B-BE32-596D5E39A9D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19A2F683-3FF0-4D09-8442-AFFB801E6F98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19A2F683-3FF0-4D09-8442-AFFB801E6F98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19A2F683-3FF0-4D09-8442-AFFB801E6F98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19A2F683-3FF0-4D09-8442-AFFB801E6F98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{279E52AA-0816-4AFE-A049-4871C8D60E8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{279E52AA-0816-4AFE-A049-4871C8D60E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{279E52AA-0816-4AFE-A049-4871C8D60E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{279E52AA-0816-4AFE-A049-4871C8D60E8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49ACAB61-3540-4811-A591-1137695C17A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49ACAB61-3540-4811-A591-1137695C17A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49ACAB61-3540-4811-A591-1137695C17A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49ACAB61-3540-4811-A591-1137695C17A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1371A9F-1361-463C-83C1-631B4B258377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1371A9F-1361-463C-83C1-631B4B258377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1371A9F-1361-463C-83C1-631B4B258377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1371A9F-1361-463C-83C1-631B4B258377}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B259C92-4976-41D0-9486-50E79F770D6E}
+	EndGlobalSection
+EndGlobal

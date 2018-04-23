@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Christian Prochnow</Authors>
+    <Company>The AppCore project</Company>
+    <Product>AppCore Logging Framework</Product>
+    <Copyright>Copyright (c) 2018 the AppCore project</Copyright>
+    <PackageLicenseUrl>https://github.com/AppCoreNet/Logging/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/AppCoreNet/Logging</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+</Project>

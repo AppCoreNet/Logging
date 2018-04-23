@@ -1,0 +1,24 @@
+﻿using System.Collections.Generic;
+using Serilog.Events;
+
+namespace AppCore.Logging
+{
+    internal static class LogEventExtensions
+    {
+        public static LogEventLevel ToSerilogLogLevel(this LogLevel level)
+        {
+            return (LogEventLevel) level;
+        }
+
+        public static IEnumerable<LogEventProperty> GetSerilogProperties(this LogEvent @event, Serilog.ILogger logger)
+        {
+            foreach (ILogProperty property in @event.Properties)
+            {
+                logger.BindProperty(property.Name, property.Value, true, out LogEventProperty logEventProperty);
+                yield return logEventProperty;
+            }
+
+            yield return new LogEventProperty(SerilogPropertyNames.EventId, new ScalarValue(@event.Id));
+        }
+    }
+}

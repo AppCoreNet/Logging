@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <RootNamespace>AppCore.Logging</RootNamespace>
+    <Description>AppCore logging framework implementations for Microsoft.Extensions.Logging</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="AppCore.Logging.Microsoft.Extensions.csproj.DotSettings" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AppCore.Diagnostics.Sources" Version="$(AppCore_Shared_Version)">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="AppCore.DependencyInjection.Abstractions" Version="$(AppCore_DI_Version)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[1.0,3.0)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppCore.Logging.Abstractions\AppCore.Logging.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>
