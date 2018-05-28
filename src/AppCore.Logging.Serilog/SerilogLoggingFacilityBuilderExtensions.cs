@@ -1,15 +1,17 @@
-﻿using AppCore.Logging;
+﻿// Licensed under the MIT License.
+// Copyright (c) 2018 the AppCore .NET project.
+
+using AppCore.Diagnostics;
 
 // ReSharper disable once CheckNamespace
-namespace AppCore.DependencyInjection
+namespace AppCore.DependencyInjection.Builder
 {
     public static class SerilogLoggingFacilityBuilderExtensions
     {
-        public static TBuilder UseSerilog<TBuilder>(this TBuilder builder)
-            where TBuilder : IFacilityBuilder<ILoggingFacility>
+        public static IFacilityBuilder<ILoggingFacility> AddSerilog(this IFacilityBuilder<ILoggingFacility> builder)
         {
-            builder.UseExtension(new SerilogLoggingFacilityExtension());
-            return builder;
+            Ensure.Arg.NotNull(builder, nameof(builder));
+            return builder.AddExtension<SerilogLoggingFacilityExtension>();
         }
     }
 }

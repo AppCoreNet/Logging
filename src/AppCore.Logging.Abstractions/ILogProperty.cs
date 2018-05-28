@@ -1,4 +1,7 @@
-﻿namespace AppCore.Logging
+﻿// Licensed under the MIT License.
+// Copyright (c) 2018 the AppCore .NET project.
+
+namespace AppCore.Logging
 {
     /// <summary>
     /// Represents a property which is added to a <see cref="LogEvent"/>.
