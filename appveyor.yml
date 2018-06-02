@@ -1,0 +1,25 @@
+version: 'ci-build-{build}'
+
+pull_requests:
+  do_not_increment_build_number: true
+
+image:
+- Visual Studio 2017
+- Ubuntu
+
+nuget:
+  disable_publish_on_pr: true
+
+configuration: Debug
+build_script:
+- pwsh: ./build.ps1 -Configuration $env:CONFIGURATION -BuildNumber $env:APPVEYOR_BUILD_NUMBER -CI
+test_script:
+- pwsh: ./test.ps1 -Configuration $env:CONFIGURATION
+
+branches:
+  except:
+  - /^release\/.*$/
+
+artifacts:
+  - path: '**/*.nupkg'
+    name: NuGet Packages
