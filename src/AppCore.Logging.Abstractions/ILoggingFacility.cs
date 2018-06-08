@@ -4,6 +4,9 @@
 // ReSharper disable once CheckNamespace
 namespace AppCore.DependencyInjection
 {
+    /// <summary>
+    /// Represents a logging facility.
+    /// </summary>
     public interface ILoggingFacility : IFacility
     {
     }
