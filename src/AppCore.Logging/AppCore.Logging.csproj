@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
-    <Description>AppCore logging framework implementations</Description>
+    <Description>AppCore logging framework default implementations</Description>
   </PropertyGroup>
 
   <ItemGroup>
