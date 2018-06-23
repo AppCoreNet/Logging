@@ -9,12 +9,12 @@ namespace AppCore.DependencyInjection
 {
     public class MicrosoftLoggingFacilityExtension : FacilityExtension<ILoggingFacility>
     {
-        public MicrosoftLoggingFacilityExtension()
+        protected override void RegisterComponents(IComponentRegistry registry, ILoggingFacility facility)
         {
-            Register<ILoggerProvider>()
-                .Add<MicrosoftLoggerProvider>()
-                .PerContainer()
-                .IfNotRegistered();
+            registry.Register<ILoggerProvider>()
+                    .Add<MicrosoftLoggerProvider>()
+                    .PerContainer()
+                    .IfNotRegistered();
         }
     }
 }

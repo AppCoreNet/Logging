@@ -9,12 +9,12 @@ namespace AppCore.DependencyInjection
 {
     public class SerilogLoggingFacilityExtension : FacilityExtension<ILoggingFacility>
     {
-        public SerilogLoggingFacilityExtension()
+        protected override void RegisterComponents(IComponentRegistry registry, ILoggingFacility facility)
         {
-            Register<ILoggerProvider>()
-                .Add<SerilogLoggerProvider>()
-                .PerContainer()
-                .IfNotRegistered();
+            registry.Register<ILoggerProvider>()
+                    .Add<SerilogLoggerProvider>()
+                    .PerContainer()
+                    .IfNotRegistered();
         }
     }
 }
