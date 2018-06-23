@@ -9,16 +9,16 @@ namespace AppCore.DependencyInjection
 {
     public class LoggingFacility : Facility, ILoggingFacility
     {
-        public LoggingFacility()
+        protected override void RegisterComponents(IComponentRegistry registry)
         {
-            Register<ILoggerFactory>()
-                .Add<LoggerFactory>()
-                .PerContainer()
-                .IfNoneRegistered();
+            registry.Register<ILoggerFactory>()
+                    .Add<LoggerFactory>()
+                    .PerContainer()
+                    .IfNoneRegistered();
 
-            Register(typeof(ILogger<>))
-                .Add(typeof(Logger<>))
-                .IfNoneRegistered();
+            registry.Register(typeof(ILogger<>))
+                    .Add(typeof(Logger<>))
+                    .IfNoneRegistered();
         }
     }
 }
