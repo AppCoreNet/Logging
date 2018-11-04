@@ -36,6 +36,16 @@ namespace AppCore.Logging
                     exception));
         }
 
+        /// <summary>
+        /// Logs a message and/or exception with the specified <see cref="LogLevel"/>, <see cref="LogEventId"/>
+        /// and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="level">The <see cref="LogLevel"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="exception">The <see cref="Exception"/> that occured, may be <c>null</c>.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="properties">The properties logged with the message.</param>
         public static void Log(
             this ILogger logger,
             LogLevel level,
@@ -53,7 +63,23 @@ namespace AppCore.Logging
             }
         }
 
-        public static void Log(this ILogger logger, LogLevel level, LogEventId id, Exception exception, string format, params object[] args)
+        /// <summary>
+        /// Logs a message and/or exception with the specified <see cref="LogLevel"/>, <see cref="LogEventId"/>
+        /// and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="level">The <see cref="LogLevel"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="exception">The <see cref="Exception"/> that occured, may be <c>null</c>.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="args">The format arguments used to format the message.</param>
+        public static void Log(
+            this ILogger logger,
+            LogLevel level,
+            LogEventId id,
+            Exception exception,
+            string format,
+            params object[] args)
         {
             Ensure.Arg.NotNull(logger, nameof(logger));
 
@@ -75,122 +101,373 @@ namespace AppCore.Logging
             }
         }
 
-
-        public static void LogTrace(this ILogger logger, LogEventId id, Exception exception, string format, params ILogProperty[] properties)
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Trace"/> message and exception with the specified <see cref="LogEventId"/>
+        /// and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="exception">The <see cref="Exception"/> that occured, may be <c>null</c>.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="properties">The properties logged with the message.</param>
+        public static void LogTrace(
+            this ILogger logger,
+            LogEventId id,
+            Exception exception,
+            string format,
+            params ILogProperty[] properties)
         {
             Log(logger, LogLevel.Trace, id, exception, format, properties);
         }
 
-        public static void LogTrace(this ILogger logger, LogEventId id, Exception exception, string format, params object[] args)
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Trace"/> message and exception with the specified <see cref="LogEventId"/>
+        /// and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="exception">The <see cref="Exception"/> that occured, may be <c>null</c>.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="args">The format arguments used to format the message.</param>
+        public static void LogTrace(
+            this ILogger logger,
+            LogEventId id,
+            Exception exception,
+            string format,
+            params object[] args)
         {
             Log(logger, LogLevel.Trace, id, exception, format, args);
         }
 
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Trace"/> message with the specified <see cref="LogEventId"/> and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="properties">The properties logged with the message.</param>
         public static void LogTrace(this ILogger logger, LogEventId id, string format, params ILogProperty[] properties)
         {
             Log(logger, LogLevel.Trace, id, null, format, properties);
         }
 
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Trace"/> message with the specified <see cref="LogEventId"/> and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="args">The format arguments used to format the message.</param>
         public static void LogTrace(this ILogger logger, LogEventId id, string format, params object[] args)
         {
             Log(logger, LogLevel.Trace, id, null, format, args);
         }
 
-        public static void LogDebug(this ILogger logger, LogEventId id, Exception exception, string format, params ILogProperty[] properties)
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Debug"/> message and exception with the specified <see cref="LogEventId"/>
+        /// and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="exception">The <see cref="Exception"/> that occured, may be <c>null</c>.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="properties">The properties logged with the message.</param>
+        public static void LogDebug(
+            this ILogger logger,
+            LogEventId id,
+            Exception exception,
+            string format,
+            params ILogProperty[] properties)
         {
             Log(logger, LogLevel.Debug, id, exception, format, properties);
         }
 
-        public static void LogDebug(this ILogger logger, LogEventId id, Exception exception, string format, params object[] args)
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Debug"/> message and exception with the specified <see cref="LogEventId"/>
+        /// and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="exception">The <see cref="Exception"/> that occured, may be <c>null</c>.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="args">The format arguments used to format the message.</param>
+        public static void LogDebug(
+            this ILogger logger,
+            LogEventId id,
+            Exception exception,
+            string format,
+            params object[] args)
         {
             Log(logger, LogLevel.Debug, id, exception, format, args);
         }
 
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Debug"/> message with the specified <see cref="LogEventId"/> and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="properties">The properties logged with the message.</param>
         public static void LogDebug(this ILogger logger, LogEventId id, string format, params ILogProperty[] properties)
         {
             Log(logger, LogLevel.Debug, id, null, format, properties);
         }
 
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Debug"/> message with the specified <see cref="LogEventId"/> and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="args">The format arguments used to format the message.</param>
         public static void LogDebug(this ILogger logger, LogEventId id, string format, params object[] args)
         {
             Log(logger, LogLevel.Debug, id, null, format, args);
         }
 
-        public static void LogInfo(this ILogger logger, LogEventId id, Exception exception, string format, params ILogProperty[] properties)
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Info"/> message and exception with the specified <see cref="LogEventId"/>
+        /// and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="exception">The <see cref="Exception"/> that occured, may be <c>null</c>.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="properties">The properties logged with the message.</param>
+        public static void LogInfo(
+            this ILogger logger,
+            LogEventId id,
+            Exception exception,
+            string format,
+            params ILogProperty[] properties)
         {
             Log(logger, LogLevel.Info, id, exception, format, properties);
         }
 
-        public static void LogInfo(this ILogger logger, LogEventId id, Exception exception, string format, params object[] args)
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Info"/> message and exception with the specified <see cref="LogEventId"/>
+        /// and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="exception">The <see cref="Exception"/> that occured, may be <c>null</c>.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="args">The format arguments used to format the message.</param>
+        public static void LogInfo(
+            this ILogger logger,
+            LogEventId id,
+            Exception exception,
+            string format,
+            params object[] args)
         {
             Log(logger, LogLevel.Info, id, exception, format, args);
         }
 
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Info"/> message with the specified <see cref="LogEventId"/> and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="properties">The properties logged with the message.</param>
         public static void LogInfo(this ILogger logger, LogEventId id, string format, params ILogProperty[] properties)
         {
             Log(logger, LogLevel.Info, id, null, format, properties);
         }
 
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Info"/> message with the specified <see cref="LogEventId"/> and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="args">The format arguments used to format the message.</param>
         public static void LogInfo(this ILogger logger, LogEventId id, string format, params object[] args)
         {
             Log(logger, LogLevel.Info, id, null, format, args);
         }
 
-        public static void LogWarning(this ILogger logger, LogEventId id, Exception exception, string format, params ILogProperty[] properties)
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Warning"/> message and exception with the specified <see cref="LogEventId"/>
+        /// and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="exception">The <see cref="Exception"/> that occured, may be <c>null</c>.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="properties">The properties logged with the message.</param>
+        public static void LogWarning(
+            this ILogger logger,
+            LogEventId id,
+            Exception exception,
+            string format,
+            params ILogProperty[] properties)
         {
             Log(logger, LogLevel.Warning, id, exception, format, properties);
         }
 
-        public static void LogWarning(this ILogger logger, LogEventId id, Exception exception, string format, params object[] args)
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Warning"/> message and exception with the specified <see cref="LogEventId"/>
+        /// and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="exception">The <see cref="Exception"/> that occured, may be <c>null</c>.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="args">The format arguments used to format the message.</param>
+        public static void LogWarning(
+            this ILogger logger,
+            LogEventId id,
+            Exception exception,
+            string format,
+            params object[] args)
         {
             Log(logger, LogLevel.Warning, id, exception, format, args);
         }
 
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Warning"/> message with the specified <see cref="LogEventId"/> and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="properties">The properties logged with the message.</param>
         public static void LogWarning(this ILogger logger, LogEventId id, string format, params ILogProperty[] properties)
         {
             Log(logger, LogLevel.Warning, id, null, format, properties);
         }
 
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Warning"/> message with the specified <see cref="LogEventId"/> and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="args">The format arguments used to format the message.</param>
         public static void LogWarning(this ILogger logger, LogEventId id, string format, params object[] args)
         {
             Log(logger, LogLevel.Warning, id, null, format, args);
         }
 
-        public static void LogError(this ILogger logger, LogEventId id, Exception exception, string format, params ILogProperty[] properties)
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Error"/> message and exception with the specified <see cref="LogEventId"/>
+        /// and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="exception">The <see cref="Exception"/> that occured, may be <c>null</c>.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="properties">The properties logged with the message.</param>
+        public static void LogError(
+            this ILogger logger,
+            LogEventId id,
+            Exception exception,
+            string format,
+            params ILogProperty[] properties)
         {
             Log(logger, LogLevel.Error, id, exception, format, properties);
         }
 
-        public static void LogError(this ILogger logger, LogEventId id, Exception exception, string format, params object[] args)
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Error"/> message and exception with the specified <see cref="LogEventId"/>
+        /// and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="exception">The <see cref="Exception"/> that occured, may be <c>null</c>.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="args">The format arguments used to format the message.</param>
+        public static void LogError(
+            this ILogger logger,
+            LogEventId id,
+            Exception exception,
+            string format,
+            params object[] args)
         {
             Log(logger, LogLevel.Error, id, exception, format, args);
         }
 
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Error"/> message with the specified <see cref="LogEventId"/> and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="properties">The properties logged with the message.</param>
         public static void LogError(this ILogger logger, LogEventId id, string format, params ILogProperty[] properties)
         {
             Log(logger, LogLevel.Error, id, null, format, properties);
         }
 
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Error"/> message with the specified <see cref="LogEventId"/> and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="args">The format arguments used to format the message.</param>
         public static void LogError(this ILogger logger, LogEventId id, string format, params object[] args)
         {
             Log(logger, LogLevel.Error, id, null, format, args);
         }
 
-        public static void LogCritical(this ILogger logger, LogEventId id, Exception exception, string format, params ILogProperty[] properties)
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Critical"/> message and exception with the specified <see cref="LogEventId"/>
+        /// and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="exception">The <see cref="Exception"/> that occured, may be <c>null</c>.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="properties">The properties logged with the message.</param>
+        public static void LogCritical(
+            this ILogger logger,
+            LogEventId id,
+            Exception exception,
+            string format,
+            params ILogProperty[] properties)
         {
             Log(logger, LogLevel.Critical, id, exception, format, properties);
         }
 
-        public static void LogCritical(this ILogger logger, LogEventId id, Exception exception, string format, params object[] args)
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Critical"/> message and exception with the specified <see cref="LogEventId"/>
+        /// and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="exception">The <see cref="Exception"/> that occured, may be <c>null</c>.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="args">The format arguments used to format the message.</param>
+        public static void LogCritical(
+            this ILogger logger,
+            LogEventId id,
+            Exception exception,
+            string format,
+            params object[] args)
         {
             Log(logger, LogLevel.Critical, id, exception, format, args);
         }
 
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Critical"/> message with the specified <see cref="LogEventId"/> and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="properties">The properties logged with the message.</param>
         public static void LogCritical(this ILogger logger, LogEventId id, string format, params ILogProperty[] properties)
         {
             Log(logger, LogLevel.Critical, id, null, format, properties);
         }
 
+        /// <summary>
+        /// Logs a <see cref="LogLevel.Critical"/> message with the specified <see cref="LogEventId"/> and properties.
+        /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/>.</param>
+        /// <param name="id">The unique identifier of the log event.</param>
+        /// <param name="format">The format of the log message.</param>
+        /// <param name="args">The format arguments used to format the message.</param>
         public static void LogCritical(this ILogger logger, LogEventId id, string format, params object[] args)
         {
             Log(logger, LogLevel.Critical, id, null, format, args);

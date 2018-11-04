@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.3</TargetFrameworks>
@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AppCore.Logging.Abstractions\AppCore.Logging.Abstractions.csproj" />
+    <ProjectReference Include="..\AppCore.Logging\AppCore.Logging.csproj" />
   </ItemGroup>
 
 </Project>

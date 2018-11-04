@@ -34,7 +34,7 @@ namespace AppCore.Logging
         }
 
         /// <inheritdoc />
-        public void Log(LogEvent @event)
+        public void Log(in LogEvent @event)
         {
             var serilogEvent = new Serilog.Events.LogEvent(
                 @event.Timestamp,

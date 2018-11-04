@@ -20,7 +20,7 @@ namespace AppCore.Logging
             return _loggers.Any(l => l.IsEnabled(level));
         }
 
-        public void Log(LogEvent @event)
+        public void Log(in LogEvent @event)
         {
             foreach (ILogger logger in _loggers)
             {

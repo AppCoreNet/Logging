@@ -32,7 +32,7 @@ namespace AppCore.Logging
         }
 
         /// <inheritdoc />
-        public void Log(LogEvent @event)
+        public void Log(in LogEvent @event)
         {
             _logger.Log(
                 @event.Level.ToMicrosoftLogLevel(),

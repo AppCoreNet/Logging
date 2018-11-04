@@ -7,8 +7,12 @@ using AppCore.Logging;
 // ReSharper disable once CheckNamespace
 namespace AppCore.DependencyInjection
 {
+    /// <summary>
+    /// Provides Microsoft.Extensions.Logging based logging.
+    /// </summary>
     public class MicrosoftLoggingFacilityExtension : FacilityExtension<ILoggingFacility>
     {
+        /// <inheritdoc />
         protected override void RegisterComponents(IComponentRegistry registry, ILoggingFacility facility)
         {
             registry.Register<ILoggerProvider>()

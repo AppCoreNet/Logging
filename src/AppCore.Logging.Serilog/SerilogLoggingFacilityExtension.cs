@@ -7,8 +7,12 @@ using AppCore.Logging;
 // ReSharper disable once CheckNamespace
 namespace AppCore.DependencyInjection
 {
+    /// <summary>
+    /// Provides Serilog based logging.
+    /// </summary>
     public class SerilogLoggingFacilityExtension : FacilityExtension<ILoggingFacility>
     {
+        /// <inheritdoc />
         protected override void RegisterComponents(IComponentRegistry registry, ILoggingFacility facility)
         {
             registry.Register<ILoggerProvider>()

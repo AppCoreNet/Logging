@@ -21,7 +21,7 @@ namespace AppCore.Logging
         /// Logs a event.
         /// </summary>
         /// <param name="event">The <see cref="LogEvent"/> to log.</param>
-        void Log(LogEvent @event);
+        void Log(in LogEvent @event);
     }
 
     /// <summary>

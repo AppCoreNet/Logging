@@ -12,7 +12,14 @@ namespace AppCore.Logging
     /// </summary>
     public static class LogProperty
     {
-        public static ILogProperty Create<T>(string name, T value)
+        /// <summary>
+        /// Creates a new instance of <see cref="LogProperty{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the property value.</typeparam>
+        /// <param name="name">The name of the property.</param>
+        /// <param name="value">The value of the property.</param>
+        /// <returns>A new instance of <see cref="LogProperty{T}"/>.</returns>
+        public static LogProperty<T> Create<T>(string name, T value)
         {
             return new LogProperty<T>(name, value);
         }
@@ -23,7 +30,7 @@ namespace AppCore.Logging
     /// </summary>
     /// <typeparam name="T">The type of the property value.</typeparam>
     /// <seealso cref="ILogProperty"/>
-    public readonly struct LogProperty<T> : ILogProperty, IEquatable<LogProperty<T>>
+    public class LogProperty<T> : ILogProperty, IEquatable<LogProperty<T>>
     {
         /// <summary>
         /// Gets the name of the property.
@@ -51,34 +58,49 @@ namespace AppCore.Logging
             Value = value;
         }
 
+        /// <inheritdoc />
         public override bool Equals(object obj)
         {
             return obj is LogProperty<T> property && Equals(property);
         }
 
+        /// <inheritdoc />
         public bool Equals(LogProperty<T> other)
         {
-            return Name == other.Name &&
-                   EqualityComparer<T>.Default.Equals(Value, other.Value);
+            return !ReferenceEquals(other, null)
+                   && Name == other.Name
+                   && EqualityComparer<T>.Default.Equals(Value, other.Value);
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             int hashCode = -244751520;
-            hashCode = hashCode * -1521134295 + base.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
             hashCode = hashCode * -1521134295 + EqualityComparer<T>.Default.GetHashCode(Value);
             return hashCode;
         }
 
-        public static bool operator ==(LogProperty<T> property1, LogProperty<T> property2)
+        /// <summary>
+        /// Compares two instances of <see cref="LogProperty{T}"/> for equality.
+        /// </summary>
+        /// <param name="left">The first <see cref="LogProperty{T}"/>.</param>
+        /// <param name="right">The second <see cref="LogProperty{T}"/>.</param>
+        /// <returns><c>true</c> if both instances are equal; <c>false</c> otherwise.</returns>
+        public static bool operator ==(LogProperty<T> left, LogProperty<T> right)
         {
-            return property1.Equals(property2);
+            return !ReferenceEquals(left, null) && left.Equals(right);
         }
 
-        public static bool operator !=(LogProperty<T> property1, LogProperty<T> property2)
+        /// <summary>
+        /// Compares two instances of <see cref="LogProperty{T}"/> for inequality.
+        /// </summary>
+        /// <param name="left">The first <see cref="LogProperty{T}"/>.</param>
+        /// <param name="right">The second <see cref="LogProperty{T}"/>.</param>
+        /// <returns><c>true</c> if the two instances are not equal; <c>false</c> otherwise.</returns>
+        public static bool operator !=(LogProperty<T> left, LogProperty<T> right)
         {
-            return !(property1 == property2);
+            return !(left == right);
         }
     }
 }
