@@ -7,15 +7,14 @@ using System.Collections.Generic;
 
 namespace AppCore.Logging
 {
-    internal struct LogMessageProperties : IReadOnlyList<ILogProperty>
+    internal sealed class LogMessageProperties : IReadOnlyList<ILogProperty>
     {
         private readonly LogMessageTemplate _template;
-        private readonly int _count;
         private readonly object[] _values;
 
         public static readonly LogMessageProperties Empty = new LogMessageProperties(new LogMessageTemplate(String.Empty), new object[0]);
 
-        public int Count => _count;
+        public int Count { get; }
 
         public ILogProperty this[int index]
         {
@@ -31,7 +30,7 @@ namespace AppCore.Logging
         public LogMessageProperties(LogMessageTemplate template, object[] values)
         {
             _template = template;
-            _count = values.Length;
+            Count = values.Length;
             _values = values;
         }
 
@@ -49,7 +48,7 @@ namespace AppCore.Logging
         }
     }
 
-    internal struct LogMessageProperties<T0> : IReadOnlyList<ILogProperty>
+    internal sealed class LogMessageProperties<T0> : IReadOnlyList<ILogProperty>
     {
         private readonly LogMessageTemplate _template;
         private readonly T0 _value0;
@@ -90,7 +89,7 @@ namespace AppCore.Logging
         }
     }
 
-    internal struct LogMessageProperties<T0, T1> : IReadOnlyList<ILogProperty>
+    internal sealed class LogMessageProperties<T0, T1> : IReadOnlyList<ILogProperty>
     {
         private readonly LogMessageTemplate _template;
         private readonly T0 _value0;
@@ -135,7 +134,7 @@ namespace AppCore.Logging
         }
     }
 
-    internal struct LogMessageProperties<T0, T1, T2> : IReadOnlyList<ILogProperty>
+    internal sealed class LogMessageProperties<T0, T1, T2> : IReadOnlyList<ILogProperty>
     {
         private readonly LogMessageTemplate _template;
         private readonly T0 _value0;
@@ -184,7 +183,7 @@ namespace AppCore.Logging
         }
     }
 
-    internal struct LogMessageProperties<T0, T1, T2, T3> : IReadOnlyList<ILogProperty>
+    internal sealed class LogMessageProperties<T0, T1, T2, T3> : IReadOnlyList<ILogProperty>
     {
         private readonly LogMessageTemplate _template;
         private readonly T0 _value0;
@@ -237,7 +236,7 @@ namespace AppCore.Logging
         }
     }
 
-    internal struct LogMessageProperties<T0, T1, T2, T3, T4> : IReadOnlyList<ILogProperty>
+    internal sealed class LogMessageProperties<T0, T1, T2, T3, T4> : IReadOnlyList<ILogProperty>
     {
         private readonly LogMessageTemplate _template;
         private readonly T0 _value0;
