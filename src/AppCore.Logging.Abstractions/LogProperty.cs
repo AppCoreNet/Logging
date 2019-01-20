@@ -30,7 +30,7 @@ namespace AppCore.Logging
     /// </summary>
     /// <typeparam name="T">The type of the property value.</typeparam>
     /// <seealso cref="ILogProperty"/>
-    public class LogProperty<T> : ILogProperty, IEquatable<LogProperty<T>>
+    public sealed class LogProperty<T> : ILogProperty, IEquatable<LogProperty<T>>
     {
         /// <summary>
         /// Gets the name of the property.

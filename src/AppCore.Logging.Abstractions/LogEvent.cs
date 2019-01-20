@@ -10,7 +10,7 @@ namespace AppCore.Logging
     /// <summary>
     /// Represents a log event.
     /// </summary>
-    public readonly struct LogEvent
+    public sealed class LogEvent
     {
         /// <summary>
         /// Gets the timestamp of the event.
