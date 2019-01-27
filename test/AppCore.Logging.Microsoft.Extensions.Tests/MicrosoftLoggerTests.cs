@@ -8,7 +8,7 @@ using Xunit;
 using MicrosoftLogEvent = DotNet.Extensions.Logging.Testing.LogEvent;
 using MicrosoftLogLevel = Microsoft.Extensions.Logging.LogLevel;
 
-namespace AppCore.Logging
+namespace AppCore.Logging.Microsoft.Extensions
 {
     public class MicrosoftLoggerTests
     {

@@ -5,7 +5,7 @@ using System;
 using AppCore.Diagnostics;
 using MicrosoftLogging = Microsoft.Extensions.Logging;
 
-namespace AppCore.Logging
+namespace AppCore.Logging.Microsoft.Extensions
 {
     /// <summary>
     /// Provides implementation of <see cref="ILoggerProvider"/> which creates <see cref="ILogger"/> instances

@@ -3,7 +3,7 @@
 
 using Microsoft.Extensions.Logging;
 
-namespace AppCore.Logging
+namespace AppCore.Logging.Microsoft.Extensions
 {
     internal static class LogEventExtensions
     {
