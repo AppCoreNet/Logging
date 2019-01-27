@@ -5,7 +5,7 @@ using System;
 using System.Globalization;
 using System.Text;
 
-namespace AppCore.Logging
+namespace AppCore.Logging.Microsoft.Extensions
 {
     internal static class LogEventFormatter
     {

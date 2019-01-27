@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net452;netcoreapp1.0;netcoreapp1.1;netcoreapp2.0;netcoreapp2.1;netcoreapp2.2</TargetFrameworks>
-    <RootNamespace>AppCore.Logging</RootNamespace>
+    <RootNamespace>AppCore.Logging.Serilog</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

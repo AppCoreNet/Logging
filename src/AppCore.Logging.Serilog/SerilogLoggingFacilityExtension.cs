@@ -1,8 +1,9 @@
 ﻿// Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
-using AppCore.DependencyInjection.Builder;
+using AppCore.DependencyInjection.Facilities;
 using AppCore.Logging;
+using AppCore.Logging.Serilog;
 
 // ReSharper disable once CheckNamespace
 namespace AppCore.DependencyInjection

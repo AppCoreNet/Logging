@@ -4,14 +4,14 @@
 using System;
 using AppCore.Diagnostics;
 
-namespace AppCore.Logging
+namespace AppCore.Logging.Serilog
 {
     /// <summary>
     /// Provides implementation of <see cref="ILogger"/> which logs to Serilog.
     /// </summary>
     public class SerilogLogger : ILogger
     {
-        private readonly Serilog.ILogger _logger;
+        private readonly global::Serilog.ILogger _logger;
         private readonly MessageTemplateCache _messageTemplateCache;
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace AppCore.Logging
         /// </summary>
         /// <param name="logger">The logger instance to use.</param>
         /// <exception cref="ArgumentNullException">Argument <paramref name="logger"/> is <c>null</c>.</exception>
-        public SerilogLogger(Serilog.ILogger logger)
+        public SerilogLogger(global::Serilog.ILogger logger)
         {
             Ensure.Arg.NotNull(logger, nameof(logger));
 
@@ -36,7 +36,7 @@ namespace AppCore.Logging
         /// <inheritdoc />
         public void Log(LogEvent @event)
         {
-            var serilogEvent = new Serilog.Events.LogEvent(
+            var serilogEvent = new global::Serilog.Events.LogEvent(
                 @event.Timestamp,
                 @event.Level.ToSerilogLogLevel(),
                 @event.Exception,

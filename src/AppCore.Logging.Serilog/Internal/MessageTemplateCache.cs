@@ -5,7 +5,7 @@ using System.Collections.Concurrent;
 using Serilog.Events;
 using Serilog.Parsing;
 
-namespace AppCore.Logging
+namespace AppCore.Logging.Serilog
 {
     internal class MessageTemplateCache
     {

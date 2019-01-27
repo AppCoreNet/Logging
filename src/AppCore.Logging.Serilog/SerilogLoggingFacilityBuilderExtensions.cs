@@ -1,10 +1,11 @@
 ﻿// Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
+using AppCore.DependencyInjection.Facilities;
 using AppCore.Diagnostics;
 
 // ReSharper disable once CheckNamespace
-namespace AppCore.DependencyInjection.Builder
+namespace AppCore.DependencyInjection
 {
     /// <summary>
     /// Provides extension methods for registering the <see cref="SerilogLoggingFacilityExtension"/>
