@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using Serilog.Events;
 
-namespace AppCore.Logging
+namespace AppCore.Logging.Serilog
 {
     internal static class LogEventExtensions
     {
@@ -13,7 +13,7 @@ namespace AppCore.Logging
             return (LogEventLevel) level;
         }
 
-        public static IEnumerable<LogEventProperty> GetSerilogProperties(this LogEvent @event, Serilog.ILogger logger)
+        public static IEnumerable<LogEventProperty> GetSerilogProperties(this LogEvent @event, global::Serilog.ILogger logger)
         {
             foreach (ILogProperty property in @event.Properties)
             {

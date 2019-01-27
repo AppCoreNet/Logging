@@ -6,7 +6,7 @@ using AppCore.Diagnostics;
 using Serilog;
 using Serilog.Core;
 
-namespace AppCore.Logging
+namespace AppCore.Logging.Serilog
 {
     /// <summary>
     /// Provides implementation of <see cref="ILoggerProvider"/> which creates <see cref="ILogger"/> instances

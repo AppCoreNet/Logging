@@ -9,7 +9,7 @@ using Xunit;
 using SerilogEvent = Serilog.Events.LogEvent;
 using SerilogEventLevel = Serilog.Events.LogEventLevel;
 
-namespace AppCore.Logging
+namespace AppCore.Logging.Serilog
 {
     public class SerilogLoggerTests
     {
