@@ -14,27 +14,17 @@ namespace AppCore.Logging.Serilog
     /// </summary>
     public class SerilogLoggerProvider : ILoggerProvider
     {
-        private readonly Logger _logger;
+        private readonly global::Serilog.ILogger _logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SerilogLoggerProvider"/> class.
         /// </summary>
         /// <param name="logger">The <see cref="Logger"/> used.</param>
         /// <exception cref="ArgumentNullException">Argument <paramref name="logger"/> is <c>null</c>.</exception>
-        public SerilogLoggerProvider(Logger logger)
+        public SerilogLoggerProvider(global::Serilog.ILogger logger)
         {
             Ensure.Arg.NotNull(logger, nameof(logger));
             _logger = logger;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SerilogLoggerProvider"/> class.
-        /// </summary>
-        /// <param name="configuration">The <see cref="LoggerConfiguration"/> used.</param>
-        /// <exception cref="ArgumentNullException">Argument <paramref name="configuration"/> is <c>null</c>.</exception>
-        public SerilogLoggerProvider(LoggerConfiguration configuration)
-            : this(configuration?.CreateLogger())
-        {
         }
 
         /// <inheritdoc />
@@ -46,7 +36,6 @@ namespace AppCore.Logging.Serilog
         /// <inheritdoc />
         public void Dispose()
         {
-            _logger.Dispose();
         }
     }
 }
