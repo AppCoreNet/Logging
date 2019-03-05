@@ -2,7 +2,6 @@
 // Copyright (c) 2018 the AppCore .NET project.
 
 using AppCore.DependencyInjection.Facilities;
-using AppCore.Diagnostics;
 using AppCore.Logging;
 using AppCore.Logging.Serilog;
 using Serilog;
@@ -16,7 +15,15 @@ namespace AppCore.DependencyInjection
     /// </summary>
     public class SerilogLoggingFacilityExtension : FacilityExtension<ILoggingFacility>
     {
-        private readonly ILogger _logger;
+        /// <summary>
+        /// Gets or sets the <see cref="ILogger"/> to use. If <c>null</c> the static <see cref="Log.Logger"/> is used.
+        /// </summary>
+        public ILogger Logger { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to dispose the logger.
+        /// </summary>
+        public bool Dispose { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SerilogLoggingFacilityExtension"/> class.
@@ -26,34 +33,11 @@ namespace AppCore.DependencyInjection
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SerilogLoggingFacilityExtension"/> class.
-        /// </summary>
-        /// <param name="logger">The logger which is used.</param>
-        public SerilogLoggingFacilityExtension(ILogger logger)
-        {
-            Ensure.Arg.NotNull(logger, nameof(logger));
-            _logger = logger;
-        }
-
         /// <inheritdoc />
         protected override void RegisterComponents(IComponentRegistry registry, ILoggingFacility facility)
         {
-            if (_logger == null)
-            {
-                registry.Register<ILogger>()
-                        .Add(c => Log.Logger)
-                        .IfNotRegistered();
-            }
-            else
-            {
-                registry.Register<ILogger>()
-                        .Add(_logger)
-                        .IfNotRegistered();
-            }
-
             registry.Register<ILoggerProvider>()
-                    .Add<SerilogLoggerProvider>()
+                    .Add(c => new SerilogLoggerProvider(Logger, Dispose))
                     .PerContainer()
                     .IfNotRegistered();
         }
