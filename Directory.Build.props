@@ -12,12 +12,13 @@
     <NoWarn>$(NoWarn);NU5105</NoWarn>
     <!--
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-    <RestoreLockedMode Condition="'$(CI)' == 'true'">true</RestoreLockedMode>    
+    <RestoreLockedMode Condition="'$(CI)' == 'true'">true</RestoreLockedMode>
     -->
   </PropertyGroup>
 
+  <Import Project="./build/version.props" />
   <Import Project="./build/netfx.props" />
   <Import Project="./build/sources.props" />
   <Import Project="./build/dependency-versions.props" />
-  
+
 </Project>
