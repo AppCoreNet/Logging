@@ -9,9 +9,9 @@ using AppCore.Logging.Microsoft.Extensions;
 namespace AppCore.DependencyInjection
 {
     /// <summary>
-    /// Provides Microsoft.Extensions.Logging based logging.
+    /// Provides Microsoft Logging based logging.
     /// </summary>
-    public class MicrosoftLoggingFacilityExtension : FacilityExtension<ILoggingFacility>
+    public class MicrosoftLoggingExtension : FacilityExtension<ILoggingFacility>
     {
         /// <inheritdoc />
         protected override void RegisterComponents(IComponentRegistry registry, ILoggingFacility facility)

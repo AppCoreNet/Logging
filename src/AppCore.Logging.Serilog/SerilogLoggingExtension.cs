@@ -13,7 +13,7 @@ namespace AppCore.DependencyInjection
     /// <summary>
     /// Provides Serilog based logging.
     /// </summary>
-    public class SerilogLoggingFacilityExtension : FacilityExtension<ILoggingFacility>
+    public class SerilogLoggingExtension : FacilityExtension<ILoggingFacility>
     {
         /// <summary>
         /// Gets or sets the <see cref="ILogger"/> to use. If <c>null</c> the static <see cref="Log.Logger"/> is used.
@@ -26,10 +26,10 @@ namespace AppCore.DependencyInjection
         public bool Dispose { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SerilogLoggingFacilityExtension"/> class.
+        /// Initializes a new instance of the <see cref="SerilogLoggingExtension"/> class.
         /// </summary>
         /// <remarks>Uses </remarks>
-        public SerilogLoggingFacilityExtension()
+        public SerilogLoggingExtension()
         {
         }
 

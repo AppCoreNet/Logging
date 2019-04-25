@@ -2,7 +2,6 @@
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System;
-using AppCore.Diagnostics;
 using Serilog;
 using Serilog.Core;
 
@@ -20,27 +19,26 @@ namespace AppCore.Logging.Serilog
         /// <summary>
         /// Initializes a new instance of the <see cref="SerilogLoggerProvider"/> class.
         /// </summary>
+        /// <remarks>
+        /// If <paramref name="logger"/> is <c>null</c>, the static <see cref="Log.Logger"/> is used.
+        /// </remarks>
         /// <param name="logger">The <see cref="T:global::Serilog.ILogger"/> used.</param>
         /// <param name="dispose">Whether to dispose the logger.</param>
-        /// <exception cref="ArgumentNullException">Argument <paramref name="logger"/> is <c>null</c>.</exception>
         public SerilogLoggerProvider(global::Serilog.ILogger logger, bool dispose = false)
         {
-            Ensure.Arg.NotNull(logger, nameof(logger));
-            _logger = logger;
-            _dispose = dispose && logger is IDisposable
-                ? new Action(() => ((IDisposable) _logger).Dispose())
-                : null;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SerilogLoggerProvider"/> class using the static <see cref="Log.Logger"/>.
-        /// </summary>
-        /// <param name="dispose">Whether to dispose the logger.</param>
-        public SerilogLoggerProvider(bool dispose = true)
-        {
-            _logger = Log.Logger;
-            _dispose = dispose ? new Action(Log.CloseAndFlush)
-                : null;
+            if (logger == null)
+            {
+                _logger = Log.Logger;
+                _dispose = dispose ? new Action(Log.CloseAndFlush)
+                    : null;
+            }
+            else
+            {
+                _logger = logger;
+                _dispose = dispose && logger is IDisposable
+                    ? new Action(() => ((IDisposable) _logger).Dispose())
+                    : null;
+            }
         }
 
         /// <inheritdoc />

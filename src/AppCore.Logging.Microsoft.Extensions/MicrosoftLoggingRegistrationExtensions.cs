@@ -8,21 +8,20 @@ using AppCore.Diagnostics;
 namespace AppCore.DependencyInjection
 {
     /// <summary>
-    /// Provides extensions methods for registering <see cref="MicrosoftLoggingFacilityExtension"/> with
-    /// a <see cref="IFacilityBuilder{TFacility}"/> of <see cref="ILoggingFacility"/>.
+    /// Provides extensions methods to register Microsoft Logging with the logging facility.
     /// </summary>
-    public static class MicrosoftLoggingFacilityBuilderExtensions
+    public static class MicrosoftLoggingRegistrationExtensions
     {
         /// <summary>
-        /// Registers the <see cref="MicrosoftLoggingFacilityExtension"/> with the <paramref name="builder"/>.
+        /// Registers the Microsoft Logging with the logging facility.
         /// </summary>
         /// <param name="builder">The <see cref="IFacilityBuilder{TFacility}"/>.</param>
         /// <returns>The <paramref name="builder"/>.</returns>
-        public static IFacilityBuilder<ILoggingFacility> UseMicrosoftLogging(
+        public static IFacilityExtensionBuilder<ILoggingFacility, MicrosoftLoggingExtension> AddMicrosoftLogging(
             this IFacilityBuilder<ILoggingFacility> builder)
         {
             Ensure.Arg.NotNull(builder, nameof(builder));
-            return builder.AddExtension<MicrosoftLoggingFacilityExtension>();
+            return builder.AddExtension<MicrosoftLoggingExtension>();
         }
     }
 }
