@@ -3,6 +3,8 @@
 
 using AppCore.DependencyInjection.Facilities;
 using AppCore.Diagnostics;
+using AppCore.Logging;
+using AppCore.Logging.Microsoft.Extensions;
 
 // ReSharper disable once CheckNamespace
 namespace AppCore.DependencyInjection

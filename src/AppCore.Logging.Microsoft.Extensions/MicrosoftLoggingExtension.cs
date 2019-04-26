@@ -1,12 +1,10 @@
 ﻿// Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
+using AppCore.DependencyInjection;
 using AppCore.DependencyInjection.Facilities;
-using AppCore.Logging;
-using AppCore.Logging.Microsoft.Extensions;
 
-// ReSharper disable once CheckNamespace
-namespace AppCore.DependencyInjection
+namespace AppCore.Logging.Microsoft.Extensions
 {
     /// <summary>
     /// Provides Microsoft Logging based logging.

@@ -4,7 +4,10 @@
 using System;
 using AppCore.DependencyInjection.Facilities;
 using AppCore.Diagnostics;
+using AppCore.Logging;
+using AppCore.Logging.Serilog;
 using Serilog;
+using ILogger = Serilog.ILogger;
 
 // ReSharper disable once CheckNamespace
 namespace AppCore.DependencyInjection
@@ -43,7 +46,7 @@ namespace AppCore.DependencyInjection
         }
 
         /// <summary>
-        /// Configures logging to use the specified <see cref="ILogger"/>.
+        /// Configures logging to use the specified <see cref="Serilog.ILogger"/>.
         /// </summary>
         /// <param name="builder">The logging extension builder.</param>
         /// <param name="logger">The root logger to use.</param>
