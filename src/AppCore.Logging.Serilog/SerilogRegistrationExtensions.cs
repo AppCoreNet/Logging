@@ -1,5 +1,5 @@
 ﻿// Licensed under the MIT License.
-// Copyright (c) 2018 the AppCore .NET project.
+// Copyright (c) 2018,2019 the AppCore .NET project.
 
 using System;
 using AppCore.DependencyInjection.Facilities;
@@ -21,12 +21,14 @@ namespace AppCore.DependencyInjection
         /// Registers Serilog with the logging facility.
         /// </summary>
         /// <param name="builder">The <see cref="IFacilityBuilder{TFacility}"/>.</param>
+        /// <param name="configure">The delegate which is invoked to configure the extension.</param>
         /// <returns>The <paramref name="builder"/>.</returns>
-        public static IFacilityExtensionBuilder<ILoggingFacility, SerilogLoggingExtension> AddSerilog(
-            this IFacilityBuilder<ILoggingFacility> builder)
+        public static IFacilityBuilder<ILoggingFacility> AddSerilog(
+            this IFacilityBuilder<ILoggingFacility> builder,
+            Action<IFacilityExtensionBuilder<ILoggingFacility, SerilogLoggingExtension>> configure = null)
         {
             Ensure.Arg.NotNull(builder, nameof(builder));
-            return builder.AddExtension<SerilogLoggingExtension>();
+            return builder.AddExtension(configure);
         }
 
         /// <summary>
