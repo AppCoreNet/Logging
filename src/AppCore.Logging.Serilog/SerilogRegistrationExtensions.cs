@@ -28,7 +28,7 @@ namespace AppCore.DependencyInjection
             Action<IFacilityExtensionBuilder<ILoggingFacility, SerilogLoggingExtension>> configure = null)
         {
             Ensure.Arg.NotNull(builder, nameof(builder));
-            return builder.AddExtension(configure);
+            return builder.Add(configure);
         }
 
         /// <summary>
@@ -42,8 +42,13 @@ namespace AppCore.DependencyInjection
             bool dispose = true)
         {
             Ensure.Arg.NotNull(builder, nameof(builder));
-            builder.Extension.Logger = null;
-            builder.Extension.Dispose = dispose;
+            builder.Configure(
+                (f, e) =>
+                {
+                    e.Logger = null;
+                    e.Dispose = dispose;
+                });
+
             return builder;
         }
 
@@ -59,8 +64,13 @@ namespace AppCore.DependencyInjection
             ILogger logger, bool dispose = false)
         {
             Ensure.Arg.NotNull(builder, nameof(builder));
-            builder.Extension.Logger = logger;
-            builder.Extension.Dispose = dispose;
+            builder.Configure(
+                (f, e) =>
+                {
+                    e.Logger = logger;
+                    e.Dispose = dispose;
+                });
+
             return builder;
         }
 
@@ -75,8 +85,13 @@ namespace AppCore.DependencyInjection
             LoggerConfiguration config)
         {
             Ensure.Arg.NotNull(builder, nameof(builder));
-            builder.Extension.Logger = config.CreateLogger();
-            builder.Extension.Dispose = true;
+            builder.Configure(
+                (f, e) =>
+                {
+                    e.Logger = config.CreateLogger();
+                    e.Dispose = true;
+                });
+
             return builder;
         }
 

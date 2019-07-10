@@ -26,7 +26,7 @@ namespace AppCore.DependencyInjection
             Action<IFacilityExtensionBuilder<ILoggingFacility, MicrosoftLoggingExtension>> configure = null)
         {
             Ensure.Arg.NotNull(builder, nameof(builder));
-            return builder.AddExtension(configure);
+            return builder.Add(configure);
         }
     }
 }
