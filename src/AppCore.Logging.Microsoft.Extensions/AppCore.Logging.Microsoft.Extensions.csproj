@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.3;netstandard2.0</TargetFrameworks>
@@ -6,16 +6,12 @@
     <Description>AppCore logging framework implementations for Microsoft.Extensions.Logging</Description>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="AppCore.Logging.Microsoft.Extensions.csproj.DotSettings" />
-  </ItemGroup>
-
-  <ItemGroup>
+ <ItemGroup>
     <PackageReference Include="AppCore.Diagnostics.Sources" Version="$(AppCore_Shared_Version)">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Condition="'$(TargetFramework)' == 'netstandard1.3'" Version="[1.0,2.0)" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Condition="'$(TargetFramework)' == 'netstandard2.0'" Version="[2.0,3.0)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Condition="'$(TargetFramework)' == 'netstandard2.0'" Version="[2.0,4.0)" />
   </ItemGroup>
 
   <ItemGroup>
