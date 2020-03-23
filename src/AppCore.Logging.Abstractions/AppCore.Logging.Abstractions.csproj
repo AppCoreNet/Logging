@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net452;netstandard1.3;netstandard2.0</TargetFrameworks>
     <RootNamespace>AppCore.Logging</RootNamespace>
-    <Description>AppCore logging framework abstractions</Description>
+    <Description>Provides AppCore .NET abstractions for logging.</Description>
   </PropertyGroup>
 
   <ItemGroup>
