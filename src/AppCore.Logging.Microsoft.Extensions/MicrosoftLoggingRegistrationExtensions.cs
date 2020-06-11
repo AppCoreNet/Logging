@@ -1,7 +1,6 @@
-﻿// Licensed under the MIT License.
+// Licensed under the MIT License.
 // Copyright (c) 2018,2019 the AppCore .NET project.
 
-using System;
 using AppCore.DependencyInjection.Facilities;
 using AppCore.Diagnostics;
 using AppCore.Logging;
@@ -21,12 +20,11 @@ namespace AppCore.DependencyInjection
         /// <param name="builder">The <see cref="IFacilityBuilder{TFacility}"/>.</param>
         /// <param name="configure">The delegate which is invoked to configure the extension.</param>
         /// <returns>The <paramref name="builder"/>.</returns>
-        public static IFacilityBuilder<ILoggingFacility> AddMicrosoftLogging(
-            this IFacilityBuilder<ILoggingFacility> builder,
-            Action<IFacilityExtensionBuilder<ILoggingFacility, MicrosoftLoggingExtension>> configure = null)
+        public static IFacilityBuilder<ILoggingFacility> UseMicrosoftExtensions(
+            this IFacilityBuilder<ILoggingFacility> builder)
         {
             Ensure.Arg.NotNull(builder, nameof(builder));
-            return builder.Add(configure);
+            return builder.Add<MicrosoftLoggingExtension>();
         }
     }
 }
