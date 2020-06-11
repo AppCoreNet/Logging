@@ -2,11 +2,9 @@
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using DotNet.Extensions.Logging.Testing;
 using FluentAssertions;
-using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Xunit;
 using MicrosoftLogEvent = DotNet.Extensions.Logging.Testing.LogEvent;
