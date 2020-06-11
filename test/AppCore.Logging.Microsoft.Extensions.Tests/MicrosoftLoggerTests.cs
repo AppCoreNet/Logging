@@ -2,6 +2,8 @@
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using DotNet.Extensions.Logging.Testing;
 using NSubstitute;
 using Xunit;
@@ -33,22 +35,22 @@ namespace AppCore.Logging.Microsoft.Extensions
                 DateTimeOffset.Now,
                 LogLevel.Trace,
                 logEventId,
-                new LogMessageTemplate("message"),
+                new LogMessageTemplate("message {value1}"),
                 new[] { LogProperty.Create("value1", 1)},
                 new Exception());
 
             _logger.Log(logEvent);
 
             _logObserver.Received()
-                .OnNext(Arg.Is<MicrosoftLogEvent>(
-                    loggedEvent =>
-                        loggedEvent.Message == LogEventFormatter.Format(logEvent, logEvent.Exception)
-                        && loggedEvent.Level == (MicrosoftLogLevel) logEvent.Level
-                        && loggedEvent.Id.Id == logEventId.Id
-                        && loggedEvent.Id.Name == logEventId.Name
-                        && loggedEvent.Error == logEvent.Exception
-                        && Equals((LogEvent)loggedEvent.State, logEvent)
-                ));
+                        .OnNext(
+                            Arg.Is<MicrosoftLogEvent>(
+                                loggedEvent =>
+                                    loggedEvent.Message == LogEventFormatter.Format(logEvent, logEvent.Exception)
+                                    && loggedEvent.Level == (MicrosoftLogLevel) logEvent.Level
+                                    && loggedEvent.Id.Id == logEventId.Id
+                                    && loggedEvent.Id.Name == logEventId.Name
+                                    && loggedEvent.Error == logEvent.Exception
+                            ));
         }
     }
 }

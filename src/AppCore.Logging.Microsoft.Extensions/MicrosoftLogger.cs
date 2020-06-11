@@ -1,4 +1,4 @@
-﻿// Licensed under the MIT License.
+// Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System;
@@ -34,12 +34,12 @@ namespace AppCore.Logging.Microsoft.Extensions
         /// <inheritdoc />
         public void Log(LogEvent @event)
         {
-            _logger.Log(
+            _logger.Log<object>(
                 @event.Level.ToMicrosoftLogLevel(),
                 @event.Id.ToMicrosoftEventId(),
-                @event,
+                @event.GetKeyValueProperties(),
                 @event.Exception,
-                LogEventFormatter.Format);
+                (s, e) => LogEventFormatter.Format(@event, e));
         }
     }
 }
