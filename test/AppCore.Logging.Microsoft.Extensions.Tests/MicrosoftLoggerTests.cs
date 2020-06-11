@@ -2,9 +2,9 @@
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using DotNet.Extensions.Logging.Testing;
+using FluentAssertions;
 using NSubstitute;
 using Xunit;
 using MicrosoftLogEvent = DotNet.Extensions.Logging.Testing.LogEvent;
@@ -39,18 +39,45 @@ namespace AppCore.Logging.Microsoft.Extensions
                 new[] { LogProperty.Create("value1", 1)},
                 new Exception());
 
+            MicrosoftLogEvent loggedEvent = null;
+            _logObserver.When(o => o.OnNext(Arg.Any<MicrosoftLogEvent>()))
+                        .Do(
+                            ci =>
+                            {
+                                loggedEvent = ci.ArgAt<MicrosoftLogEvent>(0);
+                            });
+
             _logger.Log(logEvent);
 
-            _logObserver.Received()
-                        .OnNext(
-                            Arg.Is<MicrosoftLogEvent>(
-                                loggedEvent =>
-                                    loggedEvent.Message == LogEventFormatter.Format(logEvent, logEvent.Exception)
-                                    && loggedEvent.Level == (MicrosoftLogLevel) logEvent.Level
-                                    && loggedEvent.Id.Id == logEventId.Id
-                                    && loggedEvent.Id.Name == logEventId.Name
-                                    && loggedEvent.Error == logEvent.Exception
-                            ));
+            loggedEvent.Should()
+                       .NotBeNull();
+
+            loggedEvent.Message.Should()
+                       .Be("message 1" + Environment.NewLine + logEvent.Exception);
+
+            loggedEvent.Level.Should()
+                       .Be(MicrosoftLogLevel.Trace);
+
+            loggedEvent.Id.Id.Should()
+                       .Be(logEvent.Id.Id);
+
+            loggedEvent.Id.Name.Should()
+                       .Be(logEvent.Id.Name);
+
+            loggedEvent.Error.Should()
+                       .Be(logEvent.Exception);
+
+            loggedEvent.State.Should()
+                       .BeAssignableTo<IEnumerable<KeyValuePair<string, object>>>();
+
+            ((IEnumerable<KeyValuePair<string, object>>) loggedEvent.State)
+                .Should()
+                .BeEquivalentTo(
+                    new[]
+                    {
+                        new KeyValuePair<string, object>("{OriginalFormat}", logEvent.MessageTemplate.Format),
+                        new KeyValuePair<string, object>("value1", 1)
+                    });
         }
     }
 }
