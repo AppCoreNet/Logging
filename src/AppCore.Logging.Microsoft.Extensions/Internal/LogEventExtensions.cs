@@ -24,7 +24,7 @@ namespace AppCore.Logging.Microsoft.Extensions
             yield return new KeyValuePair<string, object>("{OriginalFormat}", @event.MessageTemplate.Format);
             foreach (ILogProperty property in @event.Properties)
             {
-                yield return new KeyValuePair<string, object>(String.Concat("{", property.Name, "}"), property.Value);
+                yield return new KeyValuePair<string, object>(property.Name, property.Value);
             }
         }
     }
