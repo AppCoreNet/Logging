@@ -1,4 +1,4 @@
-﻿// Licensed under the MIT License.
+// Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System;
@@ -71,18 +71,22 @@ namespace AppCore.Logging
         {
             Ensure.Arg.NotNull(properties, nameof(properties));
 
-            culture = culture ?? CultureInfo.CurrentUICulture;
+            culture ??= CultureInfo.CurrentUICulture;
+            return Render(properties.ToDictionary(p => p.Name, p => p.Value), culture);
+        }
 
-            Dictionary<string, object> propertiesDictionary =
-                properties.ToDictionary(p => p.Name, p => p.Value);
-
+        private string Render(Dictionary<string, object> properties, CultureInfo culture)
+        {
             return _variablesRegEx.Replace(
                 Format,
                 m =>
                 {
                     string variablePattern = m.Value;
                     string variableName = variablePattern.Substring(1, variablePattern.Length - 2);
-                    return Convert.ToString(propertiesDictionary[variableName], culture);
+                    properties.TryGetValue(variableName, out object variableValue);
+                    return variableValue != null
+                        ? Convert.ToString(variableValue, culture)
+                        : String.Empty;
                 });
         }
     }
