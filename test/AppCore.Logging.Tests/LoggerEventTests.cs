@@ -1,4 +1,4 @@
-﻿// Licensed under the MIT License.
+// Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System;
@@ -62,7 +62,7 @@ namespace AppCore.Logging
             if (args.Length == 0)
             {
                 LoggerEventDelegate loggerDelegate = LoggerEvent.Define(level, _eventId, format);
-                loggerDelegate(_logger, extraProperties, _eventException);
+                loggerDelegate(_logger, _eventException, extraProperties);
             }
             else
             {
@@ -82,8 +82,8 @@ namespace AppCore.Logging
                 var loggerDelegateArgs = new object [args.Length + 3];
                 loggerDelegateArgs[0] = _logger;
                 Array.Copy(args, 0, loggerDelegateArgs, 1, args.Length);
-                loggerDelegateArgs[args.Length + 1] = extraProperties;
-                loggerDelegateArgs[args.Length + 2] = _eventException;
+                loggerDelegateArgs[args.Length + 1] = _eventException;
+                loggerDelegateArgs[args.Length + 2] = extraProperties;
 
                 loggerDelegate.DynamicInvoke(loggerDelegateArgs);
             }

@@ -31,7 +31,7 @@ namespace AppCore.Logging
         /// </summary>
         public IReadOnlyList<string> VariableNames { get; }
 
-        internal static readonly LogMessageTemplate Empty = new LogMessageTemplate(String.Empty);
+        internal static readonly LogMessageTemplate Empty = new LogMessageTemplate(string.Empty);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogMessageTemplate"/> class.
@@ -86,7 +86,7 @@ namespace AppCore.Logging
                     properties.TryGetValue(variableName, out object variableValue);
                     return variableValue != null
                         ? Convert.ToString(variableValue, culture)
-                        : String.Empty;
+                        : string.Empty;
                 });
         }
     }

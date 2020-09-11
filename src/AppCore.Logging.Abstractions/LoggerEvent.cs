@@ -1,9 +1,7 @@
-﻿// Licensed under the MIT License.
+// Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using AppCore.Diagnostics;
 
 namespace AppCore.Logging
@@ -28,13 +26,6 @@ namespace AppCore.Logging
             return template;
         }
 
-        private static IEnumerable<ILogProperty> Concat(
-            IEnumerable<ILogProperty> properties,
-            IEnumerable<ILogProperty> extraProperties)
-        {
-            return properties.Concat(extraProperties ?? Enumerable.Empty<ILogProperty>());
-        }
-
         /// <summary>
         /// Defines a delegate which writes log event without any properties.
         /// </summary>
@@ -46,7 +37,7 @@ namespace AppCore.Logging
         public static LoggerEventDelegate Define(LogLevel level, LogEventId id, string format)
         {
             LogMessageTemplate template = CreateTemplate(format, 0);
-            return (logger, properties, exception) =>
+            return (logger, exception, properties) =>
             {
                 if (logger.IsEnabled(level))
                 {
@@ -67,7 +58,7 @@ namespace AppCore.Logging
         public static LoggerEventDelegate<T0> Define<T0>(LogLevel level, LogEventId id, string format)
         {
             LogMessageTemplate template = CreateTemplate(format, 1);
-            return (logger, arg0, properties, exception) =>
+            return (logger, arg0, exception, properties) =>
             {
                 if (logger.IsEnabled(level))
                 {
@@ -76,7 +67,7 @@ namespace AppCore.Logging
                         id,
                         exception,
                         template,
-                        Concat(new LogMessageProperties<T0>(template, arg0), properties));
+                        new LogMessageProperties<T0>(template, arg0, properties));
                 }
             };
         }
@@ -93,7 +84,7 @@ namespace AppCore.Logging
         public static LoggerEventDelegate<T0, T1> Define<T0, T1>(LogLevel level, LogEventId id, string format)
         {
             LogMessageTemplate template = CreateTemplate(format, 2);
-            return (logger, arg0, arg1, properties, exception) =>
+            return (logger, arg0, arg1, exception, properties) =>
             {
                 if (logger.IsEnabled(level))
                 {
@@ -102,7 +93,7 @@ namespace AppCore.Logging
                         id,
                         exception,
                         template,
-                        Concat(new LogMessageProperties<T0, T1>(template, arg0, arg1), properties));
+                        new LogMessageProperties<T0, T1>(template, arg0, arg1, properties));
                 }
             };
         }
@@ -119,7 +110,7 @@ namespace AppCore.Logging
         public static LoggerEventDelegate<T0, T1, T2> Define<T0, T1, T2>(LogLevel level, LogEventId id, string format)
         {
             LogMessageTemplate template = CreateTemplate(format, 3);
-            return (logger, arg0, arg1, arg2, properties, exception) =>
+            return (logger, arg0, arg1, arg2, exception, properties) =>
             {
                 if (logger.IsEnabled(level))
                 {
@@ -128,7 +119,7 @@ namespace AppCore.Logging
                         id,
                         exception,
                         template,
-                        Concat(new LogMessageProperties<T0, T1, T2>(template, arg0, arg1, arg2), properties));
+                        new LogMessageProperties<T0, T1, T2>(template, arg0, arg1, arg2, properties));
                 }
             };
         }
@@ -145,7 +136,7 @@ namespace AppCore.Logging
         public static LoggerEventDelegate<T0, T1, T2, T3> Define<T0, T1, T2, T3>(LogLevel level, LogEventId id, string format)
         {
             LogMessageTemplate template = CreateTemplate(format, 4);
-            return (logger, arg0, arg1, arg2, arg3, properties, exception) =>
+            return (logger, arg0, arg1, arg2, arg3, exception, properties) =>
             {
                 if (logger.IsEnabled(level))
                 {
@@ -154,9 +145,7 @@ namespace AppCore.Logging
                         id,
                         exception,
                         template,
-                        Concat(
-                            new LogMessageProperties<T0, T1, T2, T3>(template, arg0, arg1, arg2, arg3),
-                            properties));
+                        new LogMessageProperties<T0, T1, T2, T3>(template, arg0, arg1, arg2, arg3, properties));
                 }
             };
         }
@@ -173,7 +162,7 @@ namespace AppCore.Logging
         public static LoggerEventDelegate<T0, T1, T2, T3, T4> Define<T0, T1, T2, T3, T4>(LogLevel level, LogEventId id, string format)
         {
             LogMessageTemplate template = CreateTemplate(format, 5);
-            return (logger, arg0, arg1, arg2, arg3, arg4, properties, exception) =>
+            return (logger, arg0, arg1, arg2, arg3, arg4, exception, properties) =>
             {
                 if (logger.IsEnabled(level))
                 {
@@ -182,9 +171,7 @@ namespace AppCore.Logging
                         id,
                         exception,
                         template,
-                        Concat(
-                            new LogMessageProperties<T0, T1, T2, T3, T4>(template, arg0, arg1, arg2, arg3, arg4),
-                            properties));
+                        new LogMessageProperties<T0, T1, T2, T3, T4>(template, arg0, arg1, arg2, arg3, arg4, properties));
                 }
             };
         }
