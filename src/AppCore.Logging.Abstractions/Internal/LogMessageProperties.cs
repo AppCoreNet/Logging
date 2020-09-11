@@ -1,4 +1,4 @@
-﻿// Licensed under the MIT License.
+// Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System;
@@ -23,15 +23,20 @@ namespace AppCore.Logging
                 if (index < 0 || index >= Count)
                     throw new ArgumentOutOfRangeException(nameof(index));
 
-                return LogProperty.Create(_template.VariableNames[index], _values[index]);
+                object value = _values[index];
+                if (value is ILogProperty logProperty)
+                    return logProperty;
+
+                return LogProperty.Create(_template.VariableNames[index], value);
             }
         }
 
         public LogMessageProperties(LogMessageTemplate template, object[] values)
         {
             _template = template;
-            Count = values.Length;
             _values = values;
+
+            Count = values.Length;
         }
 
         public IEnumerator<ILogProperty> GetEnumerator()
