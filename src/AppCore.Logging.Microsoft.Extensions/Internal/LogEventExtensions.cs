@@ -1,7 +1,6 @@
 // Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
-using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 
@@ -21,11 +20,15 @@ namespace AppCore.Logging.Microsoft.Extensions
 
         public static IEnumerable<KeyValuePair<string, object>> GetKeyValueProperties(this LogEvent @event)
         {
-            yield return new KeyValuePair<string, object>("{OriginalFormat}", @event.MessageTemplate.Format);
-            foreach (ILogProperty property in @event.Properties)
+            IReadOnlyList<LogProperty> eventProperties = @event.Properties;
+            var properties = new KeyValuePair<string, object>[eventProperties.Count + 1];
+            for (int i = 0; i < eventProperties.Count; i++)
             {
-                yield return new KeyValuePair<string, object>(property.Name, property.Value);
+                properties[i] = new KeyValuePair<string, object>(eventProperties[i].Name, eventProperties[i].Value);
             }
+
+            properties[eventProperties.Count] = new KeyValuePair<string, object>("{OriginalFormat}", @event.MessageTemplate.Format);
+            return properties;
         }
     }
 }

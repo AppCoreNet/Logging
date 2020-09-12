@@ -67,7 +67,7 @@ namespace AppCore.Logging
         /// <param name="culture">The culture used to format properties.</param>
         /// <returns>The rendered log message.</returns>
         /// <exception cref="ArgumentNullException">The argument <paramref name="properties"/> is <c>null</c>.</exception>
-        public string Render(IEnumerable<ILogProperty> properties, CultureInfo culture)
+        public string Render(IReadOnlyList<LogProperty> properties, CultureInfo culture)
         {
             Ensure.Arg.NotNull(properties, nameof(properties));
 

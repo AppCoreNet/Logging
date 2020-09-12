@@ -15,7 +15,7 @@ namespace AppCore.Logging
     public delegate void LoggerEventDelegate(
         ILogger logger,
         Exception exception = null,
-        params ILogProperty[] properties);
+        params LogProperty[] properties);
 
     /// <summary>
     /// Logger event delegate.
@@ -28,7 +28,7 @@ namespace AppCore.Logging
         ILogger logger,
         T0 arg0,
         Exception exception = null,
-        params ILogProperty[] properties);
+        params LogProperty[] properties);
 
     /// <summary>
     /// Logger event delegate.
@@ -43,7 +43,7 @@ namespace AppCore.Logging
         T0 arg0,
         T1 arg1,
         Exception exception = null,
-        params ILogProperty[] properties);
+        params LogProperty[] properties);
 
     /// <summary>
     /// Logger event delegate.
@@ -60,7 +60,7 @@ namespace AppCore.Logging
         T1 arg1,
         T2 arg2,
         Exception exception = null,
-        params ILogProperty[] properties);
+        params LogProperty[] properties);
 
     /// <summary>
     /// Logger event delegate.
@@ -79,7 +79,7 @@ namespace AppCore.Logging
         T2 arg2,
         T3 arg3,
         Exception exception = null,
-        params ILogProperty[] properties);
+        params LogProperty[] properties);
 
     /// <summary>
     /// Logger event delegate.
@@ -100,5 +100,5 @@ namespace AppCore.Logging
         T3 arg3,
         T4 arg4,
         Exception exception = null,
-        params ILogProperty[] properties);
+        params LogProperty[] properties);
 }

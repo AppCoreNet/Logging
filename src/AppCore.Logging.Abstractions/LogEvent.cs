@@ -35,7 +35,7 @@ namespace AppCore.Logging
         /// <summary>
         /// Gets the properties that are logged.
         /// </summary>
-        public IReadOnlyList<ILogProperty> Properties { get; }
+        public IReadOnlyList<LogProperty> Properties { get; }
 
         /// <summary>
         /// Gets the <see cref="System.Exception"/> that will be logged.
@@ -59,7 +59,7 @@ namespace AppCore.Logging
             LogLevel level,
             LogEventId id,
             LogMessageTemplate messageTemplate,
-            IReadOnlyList<ILogProperty> properties = null,
+            IReadOnlyList<LogProperty> properties = null,
             Exception exception = null
         )
         {

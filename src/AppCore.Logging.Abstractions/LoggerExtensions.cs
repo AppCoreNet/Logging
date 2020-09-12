@@ -24,7 +24,7 @@ namespace AppCore.Logging
             LogEventId id,
             Exception exception,
             LogMessageTemplate messageTemplate,
-            IReadOnlyList<ILogProperty> properties)
+            IReadOnlyList<LogProperty> properties)
         {
             logger.Log(
                 new LogEvent(
@@ -66,7 +66,7 @@ namespace AppCore.Logging
                         nameof(args));
                 }
 
-                IReadOnlyList<ILogProperty> properties = args?.Length == 0
+                IReadOnlyList<LogProperty> properties = args?.Length == 0
                     ? LogMessageProperties.Empty
                     : new LogMessageProperties(template, args);
 
