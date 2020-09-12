@@ -4,7 +4,7 @@ parameters:
 jobs:
 - job: Linux
   pool:
-    vmImage: 'ubuntu-latest'
+    vmImage: 'ubuntu-20.04'
   steps:
   - template: ./install-steps.yml  
   - template: ./build-steps.yml
@@ -16,7 +16,7 @@ jobs:
 
 - job: MacOS
   pool:
-    vmImage: 'macOS-latest'
+    vmImage: 'macOS-10.15'
   steps:
   - template: ./install-steps.yml  
   - template: ./build-steps.yml
@@ -25,7 +25,7 @@ jobs:
       
 - job: Windows
   pool:
-    vmImage: 'windows-latest'
+    vmImage: 'windows-2019'
   steps:
   - template: ./install-steps.yml  
   - template: ./build-steps.yml
