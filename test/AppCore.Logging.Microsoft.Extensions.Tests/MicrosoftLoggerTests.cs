@@ -36,7 +36,7 @@ namespace AppCore.Logging.Microsoft.Extensions
                 LogLevel.Trace,
                 logEventId,
                 new LogMessageTemplate("message {value1}"),
-                new[] { LogProperty.Create("value1", 1)},
+                new[] { new LogProperty("value1", 1) },
                 new Exception());
 
             MicrosoftLogEvent loggedEvent = null;

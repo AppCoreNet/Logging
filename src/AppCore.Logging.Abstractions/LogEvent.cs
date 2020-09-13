@@ -1,4 +1,4 @@
-﻿// Licensed under the MIT License.
+// Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System;
@@ -35,7 +35,7 @@ namespace AppCore.Logging
         /// <summary>
         /// Gets the properties that are logged.
         /// </summary>
-        public IEnumerable<ILogProperty> Properties { get; }
+        public IReadOnlyList<LogProperty> Properties { get; }
 
         /// <summary>
         /// Gets the <see cref="System.Exception"/> that will be logged.
@@ -59,7 +59,7 @@ namespace AppCore.Logging
             LogLevel level,
             LogEventId id,
             LogMessageTemplate messageTemplate,
-            IEnumerable<ILogProperty> properties,
+            IReadOnlyList<LogProperty> properties = null,
             Exception exception = null
         )
         {
@@ -67,7 +67,7 @@ namespace AppCore.Logging
             Level = level;
             Id = id;
             MessageTemplate = messageTemplate ?? LogMessageTemplate.Empty;
-            Properties = properties ?? Enumerable.Empty<ILogProperty>();
+            Properties = properties ?? LogMessageProperties.Empty;
             Exception = exception;
         }
     }

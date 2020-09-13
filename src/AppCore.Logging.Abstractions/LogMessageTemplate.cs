@@ -31,7 +31,7 @@ namespace AppCore.Logging
         /// </summary>
         public IReadOnlyList<string> VariableNames { get; }
 
-        internal static readonly LogMessageTemplate Empty = new LogMessageTemplate(String.Empty);
+        internal static readonly LogMessageTemplate Empty = new LogMessageTemplate(string.Empty);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogMessageTemplate"/> class.
@@ -67,7 +67,7 @@ namespace AppCore.Logging
         /// <param name="culture">The culture used to format properties.</param>
         /// <returns>The rendered log message.</returns>
         /// <exception cref="ArgumentNullException">The argument <paramref name="properties"/> is <c>null</c>.</exception>
-        public string Render(IEnumerable<ILogProperty> properties, CultureInfo culture)
+        public string Render(IReadOnlyList<LogProperty> properties, CultureInfo culture)
         {
             Ensure.Arg.NotNull(properties, nameof(properties));
 
@@ -86,7 +86,7 @@ namespace AppCore.Logging
                     properties.TryGetValue(variableName, out object variableValue);
                     return variableValue != null
                         ? Convert.ToString(variableValue, culture)
-                        : String.Empty;
+                        : string.Empty;
                 });
         }
     }

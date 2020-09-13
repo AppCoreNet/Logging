@@ -1,4 +1,4 @@
-﻿// Licensed under the MIT License.
+// Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System;
@@ -27,7 +27,7 @@ namespace AppCore.Logging
         [Fact]
         public void Define_Throws_If_ParameterCount_DoesNotMatch_VariableCount()
         {
-            Assert.Throws<ArgumentException>(() => LoggerEvent.Define<int>(LogLevel.Critical, default(LogEventId), "abc"));
+            Assert.Throws<ArgumentException>(() => LoggerEvent.Define<int>(LogLevel.Critical, default, "abc"));
         }
 
         [Theory]
@@ -45,15 +45,15 @@ namespace AppCore.Logging
         [InlineData(LogLevel.Info, "message {value1} {value2} {value3} {value4} {value5}", 1, "2", true, 1234.0, 'c')]
         public void Define_CreatesDelegate_Which_WritesEvent(LogLevel level, string format, params object[] args)
         {
-            ILogProperty[] extraProperties = {LogProperty.Create("extra1", 1234), LogProperty.Create("extra2", 4321)};
+            LogProperty[] extraProperties = {new LogProperty("extra1", 1234), new LogProperty("extra2", 4321)};
 
-            IEnumerable<ILogProperty> expectedProperties = new ILogProperty[]
+            IEnumerable<LogProperty> expectedProperties = new LogProperty[]
             {
-                LogProperty.Create("value1", 1),
-                LogProperty.Create("value2", "2"),
-                LogProperty.Create("value3", true),
-                LogProperty.Create("value4", 1234.0),
-                LogProperty.Create("value5", 'c')
+                new LogProperty("value1", 1),
+                new LogProperty("value2", "2"),
+                new LogProperty("value3", true),
+                new LogProperty("value4", 1234.0),
+                new LogProperty("value5", 'c')
             };
 
             expectedProperties = expectedProperties.Take(args.Length);
@@ -62,7 +62,7 @@ namespace AppCore.Logging
             if (args.Length == 0)
             {
                 LoggerEventDelegate loggerDelegate = LoggerEvent.Define(level, _eventId, format);
-                loggerDelegate(_logger, extraProperties, _eventException);
+                loggerDelegate(_logger, _eventException, extraProperties);
             }
             else
             {
@@ -82,8 +82,8 @@ namespace AppCore.Logging
                 var loggerDelegateArgs = new object [args.Length + 3];
                 loggerDelegateArgs[0] = _logger;
                 Array.Copy(args, 0, loggerDelegateArgs, 1, args.Length);
-                loggerDelegateArgs[args.Length + 1] = extraProperties;
-                loggerDelegateArgs[args.Length + 2] = _eventException;
+                loggerDelegateArgs[args.Length + 1] = _eventException;
+                loggerDelegateArgs[args.Length + 2] = extraProperties;
 
                 loggerDelegate.DynamicInvoke(loggerDelegateArgs);
             }

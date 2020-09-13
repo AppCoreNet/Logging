@@ -1,4 +1,4 @@
-﻿// Licensed under the MIT License.
+// Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System;
@@ -14,8 +14,8 @@ namespace AppCore.Logging
     /// <param name="exception">The <see cref="Exception"/> to log.</param>
     public delegate void LoggerEventDelegate(
         ILogger logger,
-        IEnumerable<ILogProperty> properties = null,
-        Exception exception = null);
+        Exception exception = null,
+        params LogProperty[] properties);
 
     /// <summary>
     /// Logger event delegate.
@@ -27,8 +27,8 @@ namespace AppCore.Logging
     public delegate void LoggerEventDelegate<in T0>(
         ILogger logger,
         T0 arg0,
-        IEnumerable<ILogProperty> properties = null,
-        Exception exception = null);
+        Exception exception = null,
+        params LogProperty[] properties);
 
     /// <summary>
     /// Logger event delegate.
@@ -42,8 +42,8 @@ namespace AppCore.Logging
         ILogger logger,
         T0 arg0,
         T1 arg1,
-        IEnumerable<ILogProperty> properties = null,
-        Exception exception = null);
+        Exception exception = null,
+        params LogProperty[] properties);
 
     /// <summary>
     /// Logger event delegate.
@@ -59,8 +59,8 @@ namespace AppCore.Logging
         T0 arg0,
         T1 arg1,
         T2 arg2,
-        IEnumerable<ILogProperty> properties = null,
-        Exception exception = null);
+        Exception exception = null,
+        params LogProperty[] properties);
 
     /// <summary>
     /// Logger event delegate.
@@ -78,8 +78,8 @@ namespace AppCore.Logging
         T1 arg1,
         T2 arg2,
         T3 arg3,
-        IEnumerable<ILogProperty> properties = null,
-        Exception exception = null);
+        Exception exception = null,
+        params LogProperty[] properties);
 
     /// <summary>
     /// Logger event delegate.
@@ -99,6 +99,6 @@ namespace AppCore.Logging
         T2 arg2,
         T3 arg3,
         T4 arg4,
-        IEnumerable<ILogProperty> properties = null,
-        Exception exception = null);
+        Exception exception = null,
+        params LogProperty[] properties);
 }

@@ -1,4 +1,4 @@
-﻿// Licensed under the MIT License.
+// Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System.Collections.Generic;
@@ -15,13 +15,19 @@ namespace AppCore.Logging.Serilog
 
         public static IEnumerable<LogEventProperty> GetSerilogProperties(this LogEvent @event, global::Serilog.ILogger logger)
         {
-            foreach (ILogProperty property in @event.Properties)
+            IReadOnlyList<LogProperty> eventProperties = @event.Properties;
+            var properties = new LogEventProperty[eventProperties.Count + 1];
+            for (int i = 0; i < eventProperties.Count; i++)
             {
-                logger.BindProperty(property.Name, property.Value, true, out LogEventProperty logEventProperty);
-                yield return logEventProperty;
+                logger.BindProperty(eventProperties[i].Name, eventProperties[i].Value, true, out LogEventProperty logEventProperty);
+                properties[i] = logEventProperty;
             }
 
-            yield return new LogEventProperty(SerilogPropertyNames.EventId, new ScalarValue(@event.Id));
+            properties[eventProperties.Count] = new LogEventProperty(
+                SerilogPropertyNames.EventId,
+                new ScalarValue(@event.Id));
+
+            return properties;
         }
     }
 }
