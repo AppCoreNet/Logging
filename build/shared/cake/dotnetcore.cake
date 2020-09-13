@@ -181,10 +181,13 @@ Task("DotNetCore.Test")
       var coverageFiles = GetFiles(System.IO.Path.Combine(testResultsDir, "**", "coverage.cobertura.xml"));
       var reportDir = System.IO.Path.Combine(testResultsDir, "report");
 
-      ReportGenerator(coverageFiles, reportDir, new ReportGeneratorSettings
+      if (!IsRunningOnUnix())
       {
-        ReportTypes = { ReportGeneratorReportType.Cobertura, ReportGeneratorReportType.Html }
-      });
+        ReportGenerator(coverageFiles, reportDir, new ReportGeneratorSettings
+        {
+          ReportTypes = { ReportGeneratorReportType.Cobertura, ReportGeneratorReportType.Html }
+        });
+      }
     }
 });
 
