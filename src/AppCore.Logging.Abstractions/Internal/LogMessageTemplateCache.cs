@@ -1,4 +1,4 @@
-﻿// Licensed under the MIT License.
+// Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System;
@@ -15,9 +15,7 @@ namespace AppCore.Logging
 
         public LogMessageTemplate Get(string format)
         {
-            if (format == null)
-                format = String.Empty;
-
+            format ??= string.Empty;
             return _templates.GetOrAdd(format, t => new LogMessageTemplate(format));
         }
     }

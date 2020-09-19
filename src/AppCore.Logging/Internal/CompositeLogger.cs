@@ -1,4 +1,4 @@
-﻿// Licensed under the MIT License.
+// Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System.Collections.Generic;
@@ -8,23 +8,29 @@ namespace AppCore.Logging
 {
     internal class CompositeLogger : ILogger
     {
-        private readonly IEnumerable<ILogger> _loggers;
+        private readonly ILogger[] _loggers;
 
         public CompositeLogger(IEnumerable<ILogger> loggers)
         {
-            _loggers = loggers;
+            _loggers = loggers.ToArray();
         }
 
         public bool IsEnabled(LogLevel level)
         {
-            return _loggers.Any(l => l.IsEnabled(level));
+            for (int i = 0; i < _loggers.Length; i++)
+            {
+                if (_loggers[i].IsEnabled(level))
+                    return true;
+            }
+
+            return false;
         }
 
         public void Log(LogEvent @event)
         {
-            foreach (ILogger logger in _loggers)
+            for (int i = 0; i < _loggers.Length; i++)
             {
-                logger.Log(@event);
+                _loggers[i].Log(@event);
             }
         }
     }

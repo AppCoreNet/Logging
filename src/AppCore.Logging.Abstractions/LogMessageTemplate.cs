@@ -1,4 +1,4 @@
-﻿// Licensed under the MIT License.
+// Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System;
@@ -31,7 +31,7 @@ namespace AppCore.Logging
         /// </summary>
         public IReadOnlyList<string> VariableNames { get; }
 
-        internal static readonly LogMessageTemplate Empty = new LogMessageTemplate(String.Empty);
+        internal static readonly LogMessageTemplate Empty = new LogMessageTemplate(string.Empty);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogMessageTemplate"/> class.
@@ -67,22 +67,26 @@ namespace AppCore.Logging
         /// <param name="culture">The culture used to format properties.</param>
         /// <returns>The rendered log message.</returns>
         /// <exception cref="ArgumentNullException">The argument <paramref name="properties"/> is <c>null</c>.</exception>
-        public string Render(IEnumerable<ILogProperty> properties, CultureInfo culture)
+        public string Render(IReadOnlyList<LogProperty> properties, CultureInfo culture)
         {
             Ensure.Arg.NotNull(properties, nameof(properties));
 
-            culture = culture ?? CultureInfo.CurrentUICulture;
+            culture ??= CultureInfo.CurrentUICulture;
+            return Render(properties.ToDictionary(p => p.Name, p => p.Value), culture);
+        }
 
-            Dictionary<string, object> propertiesDictionary =
-                properties.ToDictionary(p => p.Name, p => p.Value);
-
+        private string Render(Dictionary<string, object> properties, CultureInfo culture)
+        {
             return _variablesRegEx.Replace(
                 Format,
                 m =>
                 {
                     string variablePattern = m.Value;
                     string variableName = variablePattern.Substring(1, variablePattern.Length - 2);
-                    return Convert.ToString(propertiesDictionary[variableName], culture);
+                    properties.TryGetValue(variableName, out object variableValue);
+                    return variableValue != null
+                        ? Convert.ToString(variableValue, culture)
+                        : string.Empty;
                 });
         }
     }

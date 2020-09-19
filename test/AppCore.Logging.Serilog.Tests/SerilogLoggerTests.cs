@@ -36,7 +36,7 @@ namespace AppCore.Logging.Serilog
                 LogLevel.Trace,
                 new LogEventId(new Random().Next(), "eventName"),
                 new LogMessageTemplate("message"),
-                new[] { LogProperty.Create("value1", 1)},
+                new[] { new LogProperty("value1", 1)},
                 new Exception());
 
             _logger.Log(logEvent);

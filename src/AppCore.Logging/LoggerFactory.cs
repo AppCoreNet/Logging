@@ -1,4 +1,4 @@
-﻿// Licensed under the MIT License.
+// Licensed under the MIT License.
 // Copyright (c) 2018 the AppCore .NET project.
 
 using System;
@@ -17,7 +17,7 @@ namespace AppCore.Logging
         private readonly IEnumerable<ILoggerProvider> _providers;
 
         private readonly ConcurrentDictionary<string, ILogger> _loggers =
-            new ConcurrentDictionary<string, ILogger>(StringComparer.Ordinal);
+            new ConcurrentDictionary<string, ILogger>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoggerFactory"/> class.
@@ -33,11 +33,13 @@ namespace AppCore.Logging
         /// <inheritdoc />
         public ILogger CreateLogger(string category)
         {
-            return _loggers.GetOrAdd(
-                category,
-                c => new CompositeLogger(
-                    _providers.Select(p => p.CreateLogger(c))
-                              .ToArray()));
+            return _loggers.GetOrAdd(category, CreateCompositeLogger);
+
+            CompositeLogger CreateCompositeLogger(string c)
+            {
+                ILogger[] loggers = _providers.Select(p => p.CreateLogger(c)).ToArray();
+                return new CompositeLogger(loggers);
+            }
         }
 
         /// <inheritdoc />
