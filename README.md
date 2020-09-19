@@ -1,9 +1,12 @@
 AppCore .NET Logging
 --------------------
 
-[![Build Status](https://dev.azure.com/AppCoreNet/Logging/_apis/build/status/AppCoreNet.Logging?branchName=dev)](https://dev.azure.com/AppCoreNet/Logging/_build/latest?definitionId=3&branchName=dev)
+[![Build Status](https://dev.azure.com/AppCoreNet/Logging/_apis/build/status/AppCoreNet.Logging%20CI?branchName=dev)](https://dev.azure.com/AppCoreNet/Logging/_build/latest?definitionId=3&branchName=dev)
+![Azure DevOps tests (compact)](https://img.shields.io/azure-devops/tests/AppCoreNet/Logging/3?compact_message)
+![Azure DevOps coverage (branch)](https://img.shields.io/azure-devops/coverage/AppCoreNet/Logging/3/dev)
+![Nuget](https://img.shields.io/nuget/v/AppCore.Logging.Abstractions)
 
-This repository contains application logging abstractions and implementations targeting the .NET Framework and .NET Core.
+This repository contains abstractions and implementations for logging. It targets the .NET Framework and .NET Core.
 
 All artifacts are licensed under the [MIT license](LICENSE). You are free to use them in open-source or commercial projects as long
 as you keep the copyright notice intact when redistributing or otherwise reusing our artifacts.
